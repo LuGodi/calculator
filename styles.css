@@ -11,22 +11,24 @@ body {
     background-color:rgb(150 113 81);
 }
 .container {
+    
     display:flex;
     flex-direction: column;
     background-color:rgb(64,47,38);
-    /* border:3px solid white; */
+    border:7px solid rgb(64,47,38);
+    border-bottom:none;
     width:325px;
-    height:480px;
-    margin:auto;
+    margin:10px auto;
     padding-top:10px;
     gap:20px;
     border-radius:8px;
+    cursor:pointer;
 }
 
 .display {
     background-color: rgb(174, 210, 118);
     width:99%;
-    height:50px;
+    height:90px;
     margin:0 auto;
 
     font-size:50px;
@@ -56,8 +58,14 @@ body {
     justify-content: space-evenly;
     height:300px;
 
-}
 
+}
+.equal-operator, .clear-operator {
+    background-color: rgb(174, 210, 118);
+    box-shadow: 0 10px 0px rgb(78,95,53);
+  
+    
+}
 .number {
     display:flex;
     flex-basis:30%;
@@ -69,7 +77,33 @@ body {
     box-shadow: 0 10px 0px rgb(78,95,53);
 }
 
-.number:hover {
+.number:hover, .operator:hover, .equal-operator:hover, .clear-operator:hover {
     background-color: rgb(78,95,53);
     box-shadow: 0 10px 0px rgb(174, 210, 118);
+}
+
+.clear-result-container {
+
+    text-align:center;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-size:30px;
+    transform:translateY(-15px);
+    gap:3px;
+    
+
+}
+.equal-operator {
+    flex-basis:90%;
+    height:50px;
+}
+.clear-operator {
+    margin-left:auto;
+    font-size:30px;
+    flex-basis:24%;
+    height:50px;
+    font-size:27px;
+}
+.clear-result-container > div {
 }
