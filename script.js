@@ -1,7 +1,7 @@
 const numbersContainer=document.querySelector(".numbers-container")
 const display = document.querySelector(".display span")
 const clearButton = document.querySelector(".clear-button")
-let inputNumbers = ""
+let displayValue = ""
 
 clearButton.addEventListener('click', clearDisplay)
 
@@ -12,10 +12,10 @@ function clearDisplay(event) {
 function displayNumbers(event) {
 
     const pressedNumber = event.target.textContent
-    inputNumbers += pressedNumber
+    displayValue += pressedNumber
     display.textContent += pressedNumber
     console.log(pressedNumber)
-    console.log({inputNumbers})
+    console.log({displayValue})
 }
 
 
