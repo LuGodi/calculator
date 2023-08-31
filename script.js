@@ -1,4 +1,24 @@
 const numbersContainer=document.querySelector(".numbers-container")
+const display = document.querySelector(".display span")
+const clearButton = document.querySelector(".clear-button")
+let inputNumbers = ""
+
+clearButton.addEventListener('click', clearDisplay)
+
+function clearDisplay(event) {
+    display.textContent = ""
+}
+
+function displayNumbers(event) {
+
+    const pressedNumber = event.target.textContent
+    inputNumbers += pressedNumber
+    display.textContent += pressedNumber
+    console.log(pressedNumber)
+    console.log({inputNumbers})
+}
+
+
 
 function renderCalculator() {
     const numbers=[]
@@ -6,6 +26,7 @@ function renderCalculator() {
         const newDiv = document.createElement("div")
         newDiv.textContent = i
         newDiv.classList.add("number")
+        newDiv.addEventListener("click", displayNumbers)
         numbers.push(newDiv)
     }
     numbersContainer.append(...numbers)
