@@ -3,37 +3,41 @@ const display = document.querySelector(".display span")
 const clearButton = document.querySelector(".clear-button")
 const equalOperator = document.querySelector(".equal-operator")
 const operators = document.querySelectorAll(".operator")
+let resultOnDisplay = false
 
 
-let lastValue
-let currentOperator
+let currentValue
+let currentOperator = ""
 
-
-//i can get the whole string with the operation
-//use regex and split to get the two numbers, make sure those are numbers
-//apply those to the function according to the operator
-
-//approach2 <- current one right now
-//upon pressing an operator, store the first value and upon pressing equal, getting the second value
-//wiring the function according to the operator
-
-//can also use array
 operators.forEach(element=>element.addEventListener("click", getNum1))
-//TODO Add ability to operate when theres already a last value on memory
+
+
 function getNum1(event) {
+    if (currentOperator) {
+        currentValue = +display.textContent
+        let result = operate(lastValue,currentValue,currentOperator)
+        lastValue = result
+        currentValue = ""
+        currentOperator = event.target.textContent
+        clearDisplay()
+        displayNumbers(result)
+        resultOnDisplay = true
+        return
+    }
     lastValue = +display.textContent
     currentOperator = event.target.textContent
     clearDisplay()
-    console.log(lastValue)
-    console.log(currentOperator)
-    //add condition to check if theres a num1 value to operate on without having to press equal
+    
 }
 
 clearButton.addEventListener('click', clearAll)
 equalOperator.addEventListener('click', (event)=>{
+                                      if (currentOperator){
                                         result = operate(lastValue,display.textContent,currentOperator)
                                         clearDisplay()
+                                        currentOperator=""
                                         displayNumbers(result)
+                                      }
                                                     })
 
 
@@ -45,19 +49,20 @@ function clearDisplay(event) {
 function clearAll() {
     lastValue = ""
     currentOperator = ""
+    currentValue = ""
+    resultOnDisplay = false
     clearDisplay()
 }
 function getPressedNumbers(event) {
+    if (resultOnDisplay) {
+        clearDisplay()
+        resultOnDisplay = false
+    }
     const pressedNumber = event.target.textContent
     displayNumbers(pressedNumber)
 }
 function displayNumbers(number) {
-
-  
-    // lastValue += pressedNumber
     display.textContent += number
-    
-    console.log({lastValue})
 }
 
 
@@ -87,6 +92,7 @@ function subtract(number1,number2) {
 }
 
 function divide (number1,number2) {
+    if (number2 === 0) return "cant divide by 0"
     return number1/number2
 }
 
